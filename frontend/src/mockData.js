@@ -9,7 +9,7 @@ const movies = [
     overview: "For the first time in the cinematic history of Spider-Man, our hero is unmasked and can no longer separate his normal life from the high-stakes of being a Super Hero.",
     poster_path: "https://image.tmdb.org/t/p/w500/1g0dhYtq4irTY1GPXvft6k4YLjm.jpg",
     backdrop_path: "https://image.tmdb.org/t/p/original/iQFcwSGbZXMkeyKrxbPnwnRo5fl.jpg",
-  },
+  },  
   {
     id: 2,
     title: "Avengers: Infinity War",
