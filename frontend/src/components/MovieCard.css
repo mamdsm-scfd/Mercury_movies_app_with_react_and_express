@@ -1,0 +1,47 @@
+.movie-card {
+  flex: 0 0 100px;
+  border-radius: 8px;
+  overflow: hidden;
+  cursor: pointer;
+  position: relative;
+  transition: transform 0.2s;
+}
+
+.movie-card:hover {
+  transform: scale(1.06);
+}
+
+.movie-card.active {
+  outline: 2px solid #e50914;
+  transform: scale(1.08);
+}
+
+.movie-poster {
+  width: 100px;
+  height: 140px;
+  object-fit: cover;
+  display: block;
+  border-radius: 8px;
+}
+
+.movie-card-overlay {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: linear-gradient(to top, rgba(0,0,0,0.8), transparent);
+  padding: 8px 6px 4px;
+  opacity: 0;
+  transition: opacity 0.2s;
+  border-radius: 0 0 8px 8px;
+}
+
+.movie-card:hover .movie-card-overlay {
+  opacity: 1;
+}
+
+.movie-card-rating {
+  font-size: 11px;
+  color: #f5c518;
+  font-weight: 600;
+}
