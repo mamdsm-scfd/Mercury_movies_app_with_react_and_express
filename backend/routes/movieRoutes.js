@@ -26,17 +26,17 @@ router.get("/", (req, res) => {
   });
 });
 
-// router.get('/:id', (req, res) => {
-//     fs.readFile(moviesPath, 'utf8', (err, data) => {
-//         if (err) return res.status(500).json({ message: "Error reading data" });
+router.get("/:id", (req, res) => {
+  fs.readFile(moviesPath, "utf8", (err, data) => {
+    if (err) return res.status(500).json({ message: "Error reading data" });
 
-//         const movies = JSON.parse(data);
-//         const movie = movies.find(m => m.id === parseInt(req.params.id));
+    const movies = JSON.parse(data);
+    const movie = movies.find((m) => m.id === parseInt(req.params.id));
 
-//         if (!movie) return res.status(404).json({ message: "Movie not found" });
+    if (!movie) return res.status(404).json({ message: "Movie not found" });
 
-//         res.json(movie);
-//     });
-// });
+    res.json(movie);
+  });
+});
 
 module.exports = router;
