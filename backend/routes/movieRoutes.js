@@ -76,4 +76,23 @@ router.patch("/:id", (req, res) => {
     });
   });
 });
+
+router.delete("/:id", (req, res) => {
+  fs.readFile(moviesPath, "utf8", (err, data) => {
+    if (err) return res.status(500).json({ message: "Error reading data" });
+
+    let movies = JSON.parse(data);
+    const index = movies.findIndex((m) => m.id === parseInt(req.params.id));
+
+    if (index === -1)
+      return res.status(404).json({ message: "Movie not found" });
+
+    const deletedMovie = movies.splice(index, 1)[0];
+
+    fs.writeFile(moviesPath, JSON.stringify(movies, null, 2), (err) => {
+      if (err) return res.status(500).json({ message: "Error saving data" });
+      res.json({ message: "Movie deleted successfully", movie: deletedMovie });
+    });
+  });
+});
 module.exports = router;
