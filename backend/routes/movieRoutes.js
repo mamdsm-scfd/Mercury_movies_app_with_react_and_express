@@ -39,4 +39,22 @@ router.get("/:id", (req, res) => {
   });
 });
 
+router.post("/", (req, res) => {
+  fs.readFile(moviesPath, "utf8", (err, data) => {
+    if (err) return res.status(500).json({ message: "Error reading data" });
+
+    const movies = JSON.parse(data);
+    const newMovie = {
+      id: Date.now(),
+      ...req.body,
+    };
+
+    movies.push(newMovie);
+
+    fs.writeFile(moviesPath, JSON.stringify(movies, null, 2), (err) => {
+      if (err) return res.status(500).json({ message: "Error saving data" });
+      res.status(201).json(newMovie);
+    });
+  });
+});
 module.exports = router;
