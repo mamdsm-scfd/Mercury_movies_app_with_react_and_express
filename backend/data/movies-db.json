@@ -46,29 +46,6 @@
     "keywords": "rescue, future, spacecraft, race against time, artificial intelligence (a.i.), nasa, time warp, dystopia, expedition, space travel, wormhole, famine, black hole, quantum mechanics, family relationships, space, robot, astronaut, scientist, single father, farmer, space station, curious, space adventure, time paradox, thoughtful, time-manipulation, father daughter relationship, 2060s, cornfield, time manipulation, complicated"
   },
   {
-    "id": 155,
-    "title": "The Dark Knight Updated",
-    "vote_average": 8.512,
-    "vote_count": 30619,
-    "status": "Released",
-    "release_date": "7/16/2008",
-    "revenue": 1004558444,
-    "runtime": 152,
-    "adult": false,
-    "budget": 185000000,
-    "imdb_id": "tt0468569",
-    "original_language": "en",
-    "original_title": "The Dark Knight",
-    "overview": "Batman raises the stakes in his war on crime. With the help of Lt. Jim Gordon and District Attorney Harvey Dent, Batman sets out to dismantle the remaining criminal organizations that plague the streets. The partnership proves to be effective, but they soon find themselves prey to a reign of chaos unleashed by a rising criminal mastermind known to the terrified citizens of Gotham as the Joker.",
-    "popularity": 130.643,
-    "tagline": "Welcome to a world without rules.",
-    "genres": "Drama, Action, Crime, Thriller",
-    "production_companies": "DC Comics, Legendary Pictures, Syncopy, Isobel Griffiths, Warner Bros. Pictures",
-    "production_countries": "United Kingdom, United States of America",
-    "spoken_languages": "English, Mandarin",
-    "keywords": "joker, sadism, chaos, secret identity, crime fighter, superhero, anti hero, scarecrow, based on comic, vigilante, organized crime, tragic hero, anti villain, criminal mastermind, district attorney, super power, super villain, neo-noir"
-  },
-  {
     "id": 19995,
     "title": "Avatar",
     "vote_average": 7.573,
@@ -320,29 +297,6 @@
     "production_countries": "United States of America",
     "spoken_languages": "English, French, German",
     "keywords": "rescue, friendship, bounty hunter, texas, slavery, plantation, rivalry, revenge, shootout, racism, kindness, dentist, django, slave trade, aftercreditsstinger, black slave, agreement, 19th century, chattanooga, german, cotton plantation, plantation owner, old west, western, 1850s, mississippi"
-  },
-  {
-    "id": 278,
-    "title": "The Shawshank Redemption",
-    "vote_average": 8.702,
-    "vote_count": 24649,
-    "status": "Released",
-    "release_date": "9/23/1994",
-    "revenue": 28341469,
-    "runtime": 142,
-    "adult": false,
-    "budget": 25000000,
-    "imdb_id": "tt0111161",
-    "original_language": "en",
-    "original_title": "The Shawshank Redemption",
-    "overview": "Framed in the 1940s for the double murder of his wife and her lover, upstanding banker Andy Dufresne begins a new life at the Shawshank prison, where he puts his accounting skills to work for an amoral warden. During his long stretch in prison, Dufresne comes to be admired by the other inmates -- including an older prisoner named Red -- for his integrity and unquenchable sense of hope.",
-    "popularity": 122.61,
-    "tagline": "Fear can hold you prisoner. Hope can set you free.",
-    "genres": "Drama, Crime",
-    "production_companies": "Castle Rock Entertainment",
-    "production_countries": "United States of America",
-    "spoken_languages": "English",
-    "keywords": "prison, friendship, police brutality, corruption, based on novel or book, hope, prison cell, delinquent, redemption, parole board, prison escape, wrongful imprisonment, interracial friendship, framed for murder, 1940s, voiceover"
   },
   {
     "id": 299534,
@@ -6912,5 +6866,9 @@
     "status": "Released",
     "release_date": "1/1/2024",
     "overview": "This is a test movie"
+  },
+  {
+    "id": 1776074203000,
+    "name": "movie added"
   }
 ]
