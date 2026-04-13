@@ -1,6 +1,7 @@
 import './Navbar.css'
 
 function Navbar({onSearch}) {
+  
   return (
     <nav className="navbar">
       <h1 className="navbarLogo">New <span>MOVIES</span></h1>
