@@ -1,0 +1,21 @@
+.add-btn-wrapper {
+  display: flex;
+  justify-content: center;
+  padding: 24px;
+}
+
+.btn-add-movie {
+  background: #e50914;
+  color: #fff;
+  border: none;
+  border-radius: 20px;
+  padding: 12px 32px;
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.btn-add-movie:hover {
+  background: #c40812;
+}
