@@ -1,6 +1,6 @@
 import "./Hero.css";
 
-function Hero({ movie, onPrev, onNext }) {
+function Hero({ movie, onPrev, onNext, onDetailsClick }) {
 
     if (!movie) return null
 
@@ -35,6 +35,9 @@ function Hero({ movie, onPrev, onNext }) {
           <span>{movie.genres}</span>
         </div>
         <p className="hero-desc">{movie.overview}</p>
+        <button className="btn-details" onClick={onDetailsClick}>
+          More Details
+        </button>
       </div>
 
       <div className="hero-nav">
