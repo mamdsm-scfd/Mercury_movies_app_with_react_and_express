@@ -38,27 +38,24 @@ function EditMovieForm({ movie, onClose, onEditMovie }) {
   }
 
   const handleSubmit = (e) => {
-    e.preventDefault()
-    const newErrors = validate()
-    if (Object.keys(newErrors).length > 0) {
-      setErrors(newErrors)
-      return
-    }
-
-    setLoading(true)
-    setTimeout(() => {
-      const updatedMovie = {
-        ...movie,
-        ...form,
-        vote_average: parseFloat(form.vote_average),
-        runtime: parseInt(form.runtime),
-      }
-      onEditMovie(updatedMovie)
-      setLoading(false)
-      onClose()
-    }, 600)
+  e.preventDefault()
+  const newErrors = validate()
+  if (Object.keys(newErrors).length > 0) {
+    setErrors(newErrors)
+    return
   }
 
+  const movieData = {
+    ...form,
+    vote_average: parseFloat(form.vote_average),
+    runtime: parseInt(form.runtime),
+  }
+
+  setLoading(true)
+  onEditMovie(movieData)
+  setLoading(false)
+  onClose()
+}
   return (
     <div className="edit-overlay" onClick={onClose}>
       <div className="edit-modal" onClick={(e) => e.stopPropagation()}>
