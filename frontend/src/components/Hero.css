@@ -141,6 +141,22 @@
   z-index: 2;
 }
 
+.btn-details {
+  margin-top: 16px;
+  background: rgba(255,255,255,0.12);
+  color: #fff;
+  border: 1px solid rgba(255,255,255,0.25);
+  border-radius: 20px;
+  padding: 10px 24px;
+  font-size: 14px;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.btn-details:hover {
+  background: rgba(255,255,255,0.22);
+}
+
 .nav-btn {
   width: 32px;
   height: 32px;
