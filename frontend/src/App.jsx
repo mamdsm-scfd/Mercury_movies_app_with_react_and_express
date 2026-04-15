@@ -1,71 +1,130 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import Navbar from './components/Navbar'
 import Hero from './components/Hero'
 import MoviesStrip from './components/MoviesStrip'
 import MovieDetails from './components/MovieDetails'
 import AddMovieForm from './components/AddMovieForm'
 import EditMovieForm from './components/EditMovieForm'
-import mockData from './mockData'
+import { getMovies, addMovie, updateMovie, deleteMovie } from './services/api'
 import './App.css'
 
 function App() {
-  const [movies, setMovies] = useState(mockData)
+  const [movies, setMovies] = useState([])
   const [activeIndex, setActiveIndex] = useState(0)
   const [search, setSearch] = useState('')
-  const [selectedMovie, setSelectedMovie] = useState(null)
-  const [movieToEdit, setMovieToEdit] = useState(null)
+  const [loading, setLoading] = useState(true)
+  const [error, setError] = useState(null)
   const [showAddForm, setShowAddForm] = useState(false)
+  const [movieToEdit, setMovieToEdit] = useState(null)
+  const [selectedMovie, setSelectedMovie] = useState(null)
 
-  const filteredMovies = movies.filter(m =>
-    m.title.toLowerCase().includes(search.toLowerCase())
-  )
+  const fetchMovies = async (searchTerm = '') => {
+    try {
+      setLoading(true)
+      setError(null)
+      const data = await getMovies(searchTerm)
+      setMovies(data)
+      setActiveIndex(0)
+    } catch (err) {
+      setError('Failed to load movies. Is the backend running?')
+    } finally {
+      setLoading(false)
+    }
+  }
+
+  useEffect(() => {
+    fetchMovies()
+  }, [])
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      fetchMovies(search)
+    }, 500)
+    return () => clearTimeout(timer)
+  }, [search])
 
   const handlePrev = () => {
-    setActiveIndex(i => (i === 0 ? filteredMovies.length - 1 : i - 1))
+    setActiveIndex(i => (i === 0 ? movies.length - 1 : i - 1))
   }
 
   const handleNext = () => {
-    setActiveIndex(i => (i === filteredMovies.length - 1 ? 0 : i + 1))
+    setActiveIndex(i => (i === movies.length - 1 ? 0 : i + 1))
   }
 
   const handleSelect = (movie) => {
-    const index = filteredMovies.findIndex(m => m.id === movie.id)
+    const index = movies.findIndex(m => m.id === movie.id)
     setActiveIndex(index)
   }
 
-  const handleAddMovie = (newMovie) => {
-    setMovies(prev => [...prev, newMovie])
-    setActiveIndex(movies.length)
+  const handleAddMovie = async (movieData) => {
+    try {
+      const newMovie = await addMovie(movieData)
+      setMovies(prev => [...prev, newMovie])
+      setActiveIndex(movies.length)
+    } catch (err) {
+      alert('Failed to add movie!')
+    }
   }
 
-  const handleEditMovie = (updatedMovie) => {
-    setMovies(prev =>
-      prev.map(m => m.id === updatedMovie.id ? updatedMovie : m)
-    )
-    setSelectedMovie(updatedMovie)
+  const handleEditMovie = async (updatedData) => {
+    try {
+      const updated = await updateMovie(movieToEdit.id, updatedData)
+      setMovies(prev =>
+        prev.map(m => m.id === updated.id ? updated : m)
+      )
+    } catch (err) {
+      alert('Failed to update movie!')
+    }
   }
 
-  const handleDeleteMovie = (id) => {
-    setMovies(prev => prev.filter(m => m.id !== id))
-    setSelectedMovie(null)
-    setActiveIndex(0)
+  const handleDeleteMovie = async (id) => {
+    const confirm = window.confirm('Delete this movie?')
+    if (!confirm) return
+    try {
+      await deleteMovie(id)
+      setMovies(prev => prev.filter(m => m.id !== id))
+      setSelectedMovie(null)
+      setActiveIndex(0)
+    } catch (err) {
+      alert('Failed to delete movie!')
+    }
   }
+
+  if (loading) return (
+    <div className="app">
+      <div className="loading-screen">
+        <div className="spinner" />
+        <p>Loading movies...</p>
+      </div>
+    </div>
+  )
+
+  if (error) return (
+    <div className="app">
+      <div className="error-screen">
+        <p>⚠️ {error}</p>
+        <button onClick={() => fetchMovies()}>Try Again</button>
+      </div>
+    </div>
+  )
 
   return (
     <div className="app">
       <Navbar onSearch={setSearch} />
 
       <Hero
-        movie={filteredMovies[activeIndex]}
+        movie={movies[activeIndex]}
         onPrev={handlePrev}
         onNext={handleNext}
-        onDetailsClick={() => setSelectedMovie(filteredMovies[activeIndex])}
+        onDetailsClick={() => setSelectedMovie(movies[activeIndex])}
       />
 
       <MoviesStrip
-        movies={filteredMovies}
-        activeId={filteredMovies[activeIndex]?.id}
+        movies={movies}
+        activeId={movies[activeIndex]?.id}
         onSelectMovie={handleSelect}
+        onEdit={setMovieToEdit}
+        onDelete={handleDeleteMovie}
       />
 
       <div className="add-btn-wrapper">

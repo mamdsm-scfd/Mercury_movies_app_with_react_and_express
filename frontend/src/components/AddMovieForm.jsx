@@ -40,33 +40,25 @@ function AddMovieForm({ onClose, onAddMovie }) {
   };
 
   const handleSubmit = (e) => {
-    e.preventDefault();
-    const newErrors = validate();
-    if (Object.keys(newErrors).length > 0) {
-      setErrors(newErrors);
-      return;
-    }
+  e.preventDefault()
+  const newErrors = validate()
+  if (Object.keys(newErrors).length > 0) {
+    setErrors(newErrors)
+    return
+  }
 
-    setLoading(true);
-    setTimeout(() => {
-      const newMovie = {
-        ...form,
-        id: Date.now(),
-        vote_average: parseFloat(form.vote_average),
-        runtime: parseInt(form.runtime),
-        poster_path:
-          form.poster_path ||
-          "https://via.placeholder.com/100x140/1a1a2e/fff?text=No+Image",
-        backdrop_path:
-          form.backdrop_path ||
-          "https://via.placeholder.com/800x400/1a1a2e/fff?text=No+Image",
-      };
-      onAddMovie(newMovie);
-      setLoading(false);
-      onClose();
-    }, 600);
-  };
 
+  const movieData = {
+    ...form,
+    vote_average: parseFloat(form.vote_average),
+    runtime: parseInt(form.runtime),
+  }
+
+  setLoading(true)
+  onAddMovie(movieData)
+  setLoading(false)
+  onClose()
+}
   return (
     <div className="form-overlay" onClick={onClose}>
       <div className="form-modal" onClick={(e) => e.stopPropagation()}>
